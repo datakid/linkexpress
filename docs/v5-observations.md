@@ -212,7 +212,7 @@ Left as they are, with reasons (the plan says report and fix; these are not stra
 | Kind | Where | Why it stays |
 |---|---|---|
 | Radius literals, 33 | `50%` and `999px` circles and pills; `22%` and `30%` icon squircle ratios (card.css 105, looks.css 613, qr.css 104); 1 to 3 px indicator bars (card.css 406 to 419, chrome.css 323, qr.css 120, palette.css 290); 7 and 8 px on the 22 and 30 px palette action icons (palette.css 198, 206, 305, states.css 281); the 10 px skip link (base.css 11) | geometry that is proportional to a fixed-size element, not a surface; tying them to the Corners choice would change Soft and Crisp |
-| Radius literals that are surfaces, 2 | chrome.css 175 (16 px) and layout.css 5 (8 px) | candidates for `--r-*` if the owner wants Soft and Crisp to move them; not changed without a screenshot decision |
+| Radius literals that are surfaces, 2 | chrome.css 175 (16 px) and layout.css 5 (8 px) | moved to `--r-card` and `--r-menu-item` in the follow-up below, on the owner's pick from a side-by-side |
 | Shadow literals, 29 | rings of 4 to 28% alpha, contact shadows and the per-look materials in looks.css | bespoke per-look material; the elevation ladder tokens cover the surfaces (menus, dialogs, toast, palette, bar) |
 | Dead fallback rims | card.css 90 to 91, chrome.css 84 to 85 (`@supports not (mask-composite: exclude)`) | deleted in the follow-up below, on the owner's answer |
 
@@ -270,7 +270,7 @@ New entries (owner's request). Daftar became a version card with a second versio
 
 Not done: the Arabic mirror of the title fade (recommended against), and the real-hardware `perf:recalc` and `qa:smooth --timing` runs (they need a machine that is not this sandbox).
 
-Open: the two surface radius literals, `chrome.css` 16 px (phone tab buttons) and `layout.css` 8 px (the focus ring), wait for the owner's pick from a side-by-side.
+Surface radii. The owner picked option B from a side-by-side sheet: the phone bottom-bar tab buttons use `--r-card` (16 px before; 18 px in Balanced, 24 px in Soft, 10 px in Crisp) and the keyboard focus ring uses `--r-menu-item` (8 px before; 8 px in Balanced, 10 px in Soft, 4 px in Crisp), so Soft and Crisp now move them with the other surfaces.
 
 ## 7. Baseline of the existing checks
 
@@ -305,7 +305,7 @@ All run on `main` in this sandbox (2 vCPU, no GPU).
 1. Should baseline images be uploaded somewhere (a release asset, for example) in addition to the hash manifest? One run is 380 MB.
 2. Under reduced motion, should the load bloom be removed (F1)?
 3. The effective dark ground in Vivid and Curated is `#050608`, not `#030406`. Phase 3 will pick the ground by screenshots. Should the page `theme-color` follow the effective ground?
-4. `docs/LINKEXPRESS_V5_BRIEF.md` is missing. Is there a copy to add?
+4. `docs/LINKEXPRESS_V5_BRIEF.md` is missing. Answered: the owner does not have a copy; the plan file is the whole brief.
 
 ## 11. Reproducing
 
